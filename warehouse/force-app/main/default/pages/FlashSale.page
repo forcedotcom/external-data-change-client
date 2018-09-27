@@ -1,0 +1,128 @@
+<apex:page controller="FlashSaleController">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Codey Outdoor Fitters Flash Sale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Import the Design System style sheet -->
+  <apex:slds />
+</head>
+<body>
+
+<apex:form >
+
+  <!-- REQUIRED SLDS WRAPPER -->
+  <div class="slds-scope">
+  
+    <!-- PAGE HEADER -->
+    <div class="slds-page-header" role="banner">
+      <div class="slds-grid">
+        <div class="slds-col slds-has-flexi-truncate">
+          <div class="slds-media slds-no-space slds-grow">
+            <div class="slds-media__figure">
+              <span class="slds-avatar slds-avatar--medium">
+                <svg class="slds-icon slds-icon-standard-product slds-icon--small" aria-hidden="true">
+                  <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product')}"></use>
+                </svg>
+              </span>
+            </div>
+            <div class="slds-media__body">
+              <p class="slds-text-title--caps slds-line-height--reset">Codey Outdoor Fitters Warehouse and Inventory</p>
+              <h1 class="slds-page-header__title slds-truncate" title="My Accounts">Flash Sale</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slds-grid slds-grid--align-spread">
+        <div class="slds-col slds-align-bottom slds-p-top--small">
+          <p class="slds-text-body--small page-header__info" id="products-count">Select a product category and a discount.</p>
+        </div>
+      </div>
+    </div>
+    <!-- / PAGE HEADER -->
+  
+    <br/>
+    <!-- PRIMARY CONTENT WRAPPER -->
+    <div class="myapp slds-p-horizontal--medium">
+     
+      <!-- INPUT LAYOUT GRID -->
+      <div class="slds-grid slds-grid--vertical-align-start slds-gutters">
+        <!-- INPUT FORM -->
+        <div class="slds-form slds-form_stacked">
+        
+          <!-- CATEGORY SELECTOR -->
+          <div class="slds-form-element">
+            <label class="slds-form-element__label">Product Category</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <apex:selectList size="1" value="{!selectedCategory}" styleClass="slds-select">
+                  <apex:selectOptions value="{!categoryList}" />
+                </apex:selectList>
+              </div>
+            </div>
+          </div>
+          <!-- / CATEGORY SELECTOR -->
+
+          <!-- DISCOUNT SELECTOR -->
+          <div class="slds-form-element">
+            <label class="slds-form-element__label">Discount</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <apex:selectList size="1" value="{!selectedDiscount}" styleClass="slds-select">
+                  <apex:selectOptions value="{!discountList}" />
+                </apex:selectList>
+              </div>
+            </div>
+          </div>
+          <!-- / DISCOUNT SELECTOR -->
+          
+          <!-- MIN PRICE SELECTOR -->
+          <div class="slds-form-element">
+            <label class="slds-form-element__label">Minimum Price</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <apex:selectList size="1" value="{!selectedMinPrice}" styleClass="slds-select">
+                  <apex:selectOptions value="{!minPriceList}" />
+                </apex:selectList>
+              </div>
+            </div>
+          </div>
+          <!-- / MIN PRICE SELECTOR -->
+          
+          <!-- MAX PRICE SELECTOR -->
+          <div class="slds-form-element">
+            <label class="slds-form-element__label">Max Price</label>
+            <div class="slds-form-element__control">
+              <div class="slds-select_container">
+                <apex:selectList size="1" value="{!selectedMaxPrice}" styleClass="slds-select">
+                  <apex:selectOptions value="{!maxPriceList}" />
+                </apex:selectList>
+              </div>
+            </div>
+          </div>
+          <!-- / MAX PRICE SELECTOR -->
+          
+        </div>
+        <!-- INPUT FORM -->        
+      </div>
+      <!-- / INPUT LAYOUT GRID -->
+
+      <br/>
+
+      <!-- SUBMIT BUTTON -->
+      <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-has-flexi-truncate">          
+          <apex:commandButton styleClass="slds-button slds-button--neutral" value="Submit" action="{!startJob}" />
+        </div>
+      </div>
+
+    </div>
+    <!-- / PRIMARY CONTENT WRAPPER -->
+  </div>
+  <!-- / REQUIRED SLDS WRAPPER -->    
+</apex:form>
+ 
+</body>
+</html>
+</apex:page>

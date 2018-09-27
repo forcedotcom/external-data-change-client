@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customConfiguration>{"inlineCountEnabled":"true","csrfTokenName":"","requestCompression":"false","pagination":"CLIENT","Change-Tracking Interval":"300","noIdMapping":"false","format":"JSON","compatibility":"DEFAULT","csrfTokenEnabled":"false","timeout":"120","searchEnabled":"true"}</customConfiguration>
+    <endpoint>:endpoint</endpoint>
+    <isWritable>true</isWritable>
+    <label>Warehouse</label>
+    <principalType>Anonymous</principalType>
+    <protocol>NoAuthentication</protocol>
+    <type>OData4</type>
+</ExternalDataSource>

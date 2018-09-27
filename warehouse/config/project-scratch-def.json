@@ -1,0 +1,7 @@
+{
+    "orgName": "Codey Outdoor Fitters Company",
+    "edition": "Developer",
+    "orgPreferences" : {
+        "enabled": ["ExternalDataChangeEnabled"]
+    }
+}

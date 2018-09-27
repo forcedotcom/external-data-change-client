@@ -1,0 +1,118 @@
+<apex:page>
+    <apex:remoteObjects jsNamespace="WarehouseObjects">
+        <apex:remoteObjectModel name="ProductOrders__x" jsShorthand="ProductOrders"
+            fields="CustomerName__c, OrderPrice__c, OrderedOn__c, ProductId__c, ProductName__c, ProductOrderId__c, AskedQuantity__c, Quantity__c, ExternalId, Id"/>
+    </apex:remoteObjects>
+
+    <script>
+        dojoConfig= {
+            async: true,
+            paths: {
+                "dojox/cometd": "{!URLFOR($Resource.CometdDojo313Zip, '/cometd-dojo-3.1.3/cometd')}",
+                "cometd": "{!URLFOR($Resource.CometdDojo313Zip, '/cometd-dojo-3.1.3/org/cometd')}",
+                "warehouse": "{!URLFOR($Resource.ExternalDataChangeClientZip, '/warehouse')}",
+                "data": "{!URLFOR($Resource.ExternalDataChangeClientZip, '/data')}",
+                "channel": "{!URLFOR($Resource.ExternalDataChangeClientZip, '/channel')}"
+            }
+        };
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.12.1/dojo/dojo.js"/>
+
+    <script type="text/javascript">
+        var warehouse;
+        require(["warehouse/Warehouse"], function(Warehouse) {
+            warehouse = new Warehouse("{!$Site.CurrentSiteUrl}", "41.0", "{!$Api.Session_ID}", "{!$User.Username}", WarehouseObjects);
+        });
+        window.onload = function() {
+            warehouse.subscribe();
+        };
+        window.onresize = function() {
+            warehouse.placeTooltip();
+        }
+    </script>
+
+    <apex:slds/>
+
+    <div id="warehouse-panel" class="slds-scope" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Warehouse Page Header-->
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <span class="slds-avatar slds-avatar--medium">
+                                <svg class="slds-icon slds-icon-standard-product slds-icon--small" aria-hidden="true">
+                                    <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product')}"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title--caps slds-line-height--reset">Codey Outdoor Fitters - Your Wire to Exclusive Outdoor Deals</p>
+                            <h1 class="slds-page-header__title slds-truncate" title="My Accounts">Deals of the Day</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                    <button id="place-order-id" class="slds-button slds-button--neutral" disabled="disabled">Place Order</button>
+                </div>
+            </div>
+            <div class="slds-grid slds-grid--align-spread">
+                <div class="slds-col slds-align-bottom slds-p-top--small">
+                    <p class="slds-text-body--small page-header__info" id="products-count">No deals found</p>
+                </div>
+                <div class="slds-col slds-align-bottom slds-p-top--small">
+                    <p class="slds-text-body--small page-header__info" id="total-price-id">No order to place</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-grid slds-wrap">
+            <!-- Products -->
+            <div class="slds-col slds-size--1-of-1  slds-m-top--medium slds-p-right--medium slds-large-size--3-of-4">
+                <table id="products-id" class="slds-table slds-table--bordered slds-table--cell-buffer slds-no-row-hover slds-form-element">
+                    <thead>
+                        <tr class="slds-text-heading--label">
+                            <th scope="col">Updated On</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">In Stock</th>
+                            <th scope="col">Order Limit</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Price</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- Placed Orders -->
+            <div id="placed-orders" class="slds-col slds-size--1-of-1 slds-m-top--medium slds-p-left--medium slds-medium-size--1-of-4">
+            </div>
+        </div>
+
+        <!-- Page Status -->
+        <footer role="contentinfo" class="slds-p-around--large">
+            <div class="slds-grid slds-grid--align-spread">
+                <p class="slds-col" id="status-id"></p>
+                <p class="slds-col">&copy; Codey Outdoor Fitters Sample Company</p>
+            </div>
+        </footer>
+
+        <!-- SVG Icons -->
+        <div style="display: none">
+            <svg id="icon-orders-cp" class="slds-icon slds-icon-standard-orders slds-icon--small" aria-hidden="true">
+                <use href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#orders')}"></use>
+            </svg>
+            <svg id="icon-warning-cp" class="slds-input__icon" style="display: none;" aria-hidden="true">
+                <use href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning')}"></use>
+            </svg>
+            <svg id="icon-info-cp" class="slds-button__icon" aria-hidden="true">
+                <use href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+            </svg>
+        </div>
+
+        <!-- Product description tooltips -->
+        <div class="slds-popover slds-popover_tooltip slds-nubbin_top-left slds-fall-into-ground" role="tooltip" id="tooltip"
+                style="display: flex; opacity: 1; z-index: 2; position: absolute; top: 0; left: 0; width: 150px">
+            <div id="tooltip-text" class="slds-popover__body"></div>
+        </div>
+    </div>
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>ExternalId</columns>
+    <columns>Id</columns>
+    <columns>CreatedOn__c</columns>
+    <columns>Name__c</columns>
+    <columns>BrandName__c</columns>
+    <columns>Category__c</columns>
+    <columns>Description__c</columns>
+    <columns>OrderLimit__c</columns>
+    <columns>ProductId__c</columns>
+    <columns>Stock__c</columns>
+    <columns>UnitPrice__c</columns>
+    <columns>UpdatedOn__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

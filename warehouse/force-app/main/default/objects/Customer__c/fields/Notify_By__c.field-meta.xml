@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notify_By__c</fullName>
+    <externalId>false</externalId>
+    <label>Notify By</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SMS</fullName>
+                <default>true</default>
+                <label>SMS</label>
+            </value>
+            <value>
+                <fullName>EMail</fullName>
+                <default>false</default>
+                <label>EMail</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
