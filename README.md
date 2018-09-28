@@ -34,7 +34,8 @@ The Codey Warehouse sample application illustrates implementation aspects of a w
   Exclude the `flows` and `flowDefinitions` folders from `force-app/main/default` before deploying on an earlier release.
  
 * An OData 4.0 provider with remote data change tracking capability:
- [OASIS OData Version 4.0 Protocol: Requesting Changes](http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398316) 
+ [OASIS OData Version 4.0 Protocol: Requesting Changes](http://docs.oasis-open.org/odata/odata/v4.0/errata02/os/complete/part1-protocol/odata-v4.0-errata02-os-part1-protocol-complete.html#_Toc406398316).
+ The implementation on the provider should follow the entities in the OData metadata `warehouse/Warehouse.OData.Metadata.xml`
  
 * Optional: [Twilio Account](https://www.twilio.com) to demonstrate the sending of SMS messages
  

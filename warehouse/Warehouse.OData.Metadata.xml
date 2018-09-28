@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices>
+        <Schema Namespace="Warehouse" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityType Name="Product">
+                <Key>
+                    <PropertyRef Name="ProductId"/>
+                </Key>
+                <Property Name="ProductId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false"/>
+                <Property Name="BrandName" Type="Edm.String" Nullable="false"/>
+                <Property Name="Category" Type="Esm.String" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false"/>
+                <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="2"/>
+                <Property Name="Stock" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="OrderLimit" Type="Edm.Int16" Nullable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="UpdatedOn" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <NavigationProperty Name="Category" Type="Warehouse.ProductCategory" Nullable="false" Partner="ProductCategories">
+                    <ReferentialConstraint Property="Category" ReferencedProperty="Name"/>
+                </NavigationProperty>
+                <NavigationProperty Name="ProductOrders" Type="Collection(Warehouse.ProductOrder)" Partner="Product"/>
+            </EntityType>
+            <EntityType Name="ProductCategory">
+                <Key>
+                    <PropertyRef Name="Name"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="Products" Type="Collection(Warehouse.Product)" Partner="ProductCategory"/>
+            </EntityType>
+            <EntityType Name="ProductOrder">
+                <Key>
+                    <PropertyRef Name="ProductOrderId"/>
+                </Key>
+                <Property Name="ProductOrderId" Type="Edm.String" Nullable="false"/>
+                <Property Name="ProductId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ProductName" Type="Edm.String" Nullable="false"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false"/>
+                <Property Name="AskedQuantity" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Quantity" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="OrderPrice" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="2"/>
+                <Property Name="OrderedOn" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <NavigationProperty Name="Product" Type="Warehouse.Product" Nullable="false" Partner="ProductOrders">
+                    <ReferentialConstraint Property="ProductId" ReferencedProperty="ProductId"/>
+                </NavigationProperty>
+            </EntityType>
+        </Schema>
+        <Schema Namespace="Warehouse" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="Warehouse" p4:LazyLoadingEnabled="true"
+                             xmlns:p4="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+                <EntitySet Name="Products" EntityType="Warehouse.Product"/>
+                <EntitySet Name="ProductCategories" EntityType="Warehouse.ProductCategory"/>
+                <EntitySet Name="ProductOrders" EntityType="Warehouse.ProductOrder"/>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
